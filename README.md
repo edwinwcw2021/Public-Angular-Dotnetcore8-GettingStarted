@@ -14,7 +14,7 @@ Download the code.
 Open a terminal or command prompt.
 Run the following command.  
 ```
-git clone https://github.com/edwinwcw2021/Public-Angular-Dotnetcore8-Datum-Transformation.git  
+git clone https://github.com/edwinwcw2021/Public-Angular-Dotnetcore8-GettingStarted.git 
 ```  
   
 ### Use code with caution. Learn more.
