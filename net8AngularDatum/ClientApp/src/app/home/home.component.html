@@ -1,0 +1,87 @@
+<div class="container" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+  <form novalidate autocomplete="off" class="datum-form">
+    <mat-radio-group [(ngModel)]="convertFrom" name="convertFrom">
+      <div class="row">
+        <mat-radio-button value="geo" checked="true" (change)="setDefault()">WGS84</mat-radio-button>
+      </div>
+      <div class="row rowspace ">
+        <mat-form-field class="degree-width">
+          <mat-label>Lat. degree</mat-label>
+          <input matInput placeholder="lat. deg" [(ngModel)]="GeoData.latitudeDeg" name="latd" readonly="true" [disabled]="selectedOption('hkg')" required>
+          <mat-hint>Latitude Degree</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="minute-width">
+          <mat-label>Lat. minute</mat-label>
+          <input matInput #latitudeMinNgModel="ngModel" placeholder="lat min" [(ngModel)]="GeoData.latitudeMin" name="latm" cdkFocusInitial [disabled]="selectedOption('hkg')"
+                 [class.is-invalid]="(latitudeMinNgModel.touched || latitudeMinNgModel.dirty)
+            && (latitudeMinNgModel.errors?.minutesInvalid|| latitudeMinNgModel.errors?.minutesOutOfBoundInvalid)"
+                 appMinuteValidator>
+          <mat-hint>Latitude Minute</mat-hint>
+          <mat-error *ngIf="(latitudeMinNgModel.touched || latitudeMinNgModel.dirty) && latitudeMinNgModel.errors?.minutesInvalid">Please ensure the number has no more than two decimal places</mat-error>
+          <mat-error *ngIf="(latitudeMinNgModel.touched || latitudeMinNgModel.dirty) && latitudeMinNgModel.errors?.minutesOutOfBoundInvalid">The value should be 0 or greater, but less than 60</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row rowspace">
+        <mat-form-field class="degree-width">
+          <mat-label>Long. degree</mat-label>
+          <input matInput placeholder="long. deg" #longtitudeDegNgModel="ngModel" [(ngModel)]="GeoData.longitudeDeg" name="lngd" [disabled]="selectedOption('hkg')"
+                 [class.is-invalid]="(longtitudeDegNgModel.touched || longtitudeDegNgModel.dirty)
+            && (longtitudeDegNgModel.errors?.degreeInvalid|| longtitudeDegNgModel.errors?.degreeOutOfBoundInvalid)"
+                 appDegreeValidator>
+          <mat-hint>Longitude Degree</mat-hint>
+          <mat-error *ngIf="(longtitudeDegNgModel.touched || longtitudeDegNgModel.dirty) && longtitudeDegNgModel.errors?.degreeInvalid">Please provide a whole number. </mat-error>
+          <mat-error *ngIf="(longtitudeDegNgModel.touched || longtitudeDegNgModel.dirty) && longtitudeDegNgModel.errors?.degreeOutOfBoundInvalid">Valid values: 113, 114</mat-error>
+        </mat-form-field>
+        <mat-form-field class="minute-width">
+          <mat-label>Long. minute</mat-label>
+          <input matInput #longitudeMinNgModel="ngModel" placeholder="long min" [(ngModel)]="GeoData.longitudeMin" name="lngm" [disabled]="selectedOption('hkg')"
+                 [class.is-invalid]="(longitudeMinNgModel.touched || longitudeMinNgModel.dirty)
+            && (longitudeMinNgModel.errors?.minutesInvalid|| longitudeMinNgModel.errors?.minutesOutOfBoundInvalid)"
+                 appMinuteValidator>
+          <mat-hint>Longitude Minute</mat-hint>
+          <mat-error *ngIf="(longitudeMinNgModel.touched || longitudeMinNgModel.dirty) && longitudeMinNgModel.errors?.minutesInvalid">Please ensure the number has no more than two decimal places</mat-error>
+          <mat-error *ngIf="(longitudeMinNgModel.touched || longitudeMinNgModel.dirty) && longitudeMinNgModel.errors?.minutesOutOfBoundInvalid">The value should be 0 or greater, but less than 60</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-radio-button value="hkg" (change)="setDefault()">HK1980 Grid</mat-radio-button>
+      </div>
+      <div class="row rowspace ">
+        <mat-form-field class="xy-control ">
+          <mat-label>Northing</mat-label>
+          <input matInput placeholder="meter" #northNgModel="ngModel" [(ngModel)]="HKGData.x" name="X" [disabled]="selectedOption('geo')"
+                 [class.is-invalid]="(northNgModel.touched || northNgModel.dirty)
+            && (northNgModel.errors?.hknInvalid|| northNgModel.errors?.hknOutOfBoundInvalid)"
+                 appHknValidator>
+          <mat-hint>Northing</mat-hint>
+          <mat-error *ngIf="(northNgModel.touched || northNgModel.dirty) && northNgModel.errors?.hknInvalid">Please ensure the number has no more than two decimal places</mat-error>
+          <mat-error *ngIf="(northNgModel.touched || northNgModel.dirty) && northNgModel.errors?.hknOutOfBoundInvalid">The value should between 786000 and 895400</mat-error>
+        </mat-form-field>
+        <mat-form-field class="xy-control ">
+          <mat-label>Easting</mat-label>
+          <input matInput placeholder="meter" #eastNgModel="ngModel" [(ngModel)]="HKGData.y" name="Y" [disabled]="selectedOption('geo')"
+                 [class.is-invalid]="(eastNgModel.touched || eastNgModel.dirty)
+            && (eastNgModel.errors?.hkeInvalid|| eastNgModel.errors?.hkeOutOfBoundInvalid)"
+                 appHkeValidator>
+          <mat-hint>Easting</mat-hint>
+          <mat-error *ngIf="(eastNgModel.touched || eastNgModel.dirty) && eastNgModel.errors?.hkeInvalid">Please ensure the number has no more than two decimal places</mat-error>
+          <mat-error *ngIf="(eastNgModel.touched || eastNgModel.dirty) && eastNgModel.errors?.hkeOutOfBoundInvalid">The value should between 715605 and 920600</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-radio-group>
+
+    <div class="row">
+      <button mat-raised-button color="primary" (click)="btnConvert()" class="btnClass" aria-label="Convert"
+        [disabled]="northNgModel.errors?.hknInvalid|| northNgModel.errors?.hknOutOfBoundInvalid
+        ||
+        eastNgModel.errors?.hkeInvalid|| eastNgModel.errors?.hkeOutOfBoundInvalid
+        ||
+        longtitudeDegNgModel.errors?.degreeInvalid|| longtitudeDegNgModel.errors?.degreeOutOfBoundInvalid
+        ||
+        latitudeMinNgModel.errors?.minutesInvalid|| latitudeMinNgModel.errors?.minutesOutOfBoundInvalid
+        ||
+        longitudeMinNgModel.errors?.minutesInvalid|| longitudeMinNgModel.errors?.minutesOutOfBoundInvalid"
+      >Convert</button>
+    </div>
+  </form>
+</div>
