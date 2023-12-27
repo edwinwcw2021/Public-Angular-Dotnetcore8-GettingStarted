@@ -8,7 +8,7 @@
 3. Install [Visual Studio 2022 Community](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes)
 4. Install [Git CLI for Windows](https://gitforwindows.org)
 5. (optional install) [Visual Studio Code](https://code.visualstudio.com/download/)
-
+---
 ### Steps:
 Download the code.
 Open a terminal or command prompt.
@@ -32,8 +32,9 @@ Ensure Git CLI is installed and configured correctly for Windows users.
 The HKG80 to WGS84 calculation logic is based on a 20-year-old model and may not provide high precision. Its purpose is primarily for demonstrating Angular and ASP.NET Core concepts.  
   
 #### References:  
+Visit my live website at [https://datum.vagweb.com](https://datum.vagweb.com).    
 GitHub repository [Tidal Stream 2002 VB6 version](https://github.com/edwinwcw2021/TidalStream2002) Previous project for HKG80 to WGS84 logic.  
-Hydrographic office website for [datum transformation](https://www.hydro.gov.hk/eng/datumnew.php). The calculations run much faster using ASP.NET Core (this page) than with PHP.  
+Hydrographic office website for [datum transformation](https://www.hydro.gov.hk/eng/datumnew.php). The calculations run much faster using ASP.NET Core (My live version) than with PHP.  
 Please feel free to leave any questions or feedback on the GitHub repository.  
     
 Edwin Wong  
