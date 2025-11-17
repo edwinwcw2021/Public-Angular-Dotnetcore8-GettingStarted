@@ -2,12 +2,13 @@ import { Directive } from '@angular/core';
 import { AbstractControl, Validator, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
-  selector: '[appHknValidator]',
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: HknValidatorDirective,
-    multi: true
-  }]
+    selector: '[appHknValidator]',
+    providers: [{
+            provide: NG_VALIDATORS,
+            useExisting: HknValidatorDirective,
+            multi: true
+        }],
+    standalone: false
 })
 export class HknValidatorDirective {
 
