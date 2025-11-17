@@ -1,4 +1,4 @@
-# Angular 17, dotnet core 8, Rxjs, Restfull API, Datum Transformation
+# Angular 20, dotnet core 10, Rxjs, Datum Transformation
 
 ## Prerequisites:
 ### Operating System: Windows or macOS
@@ -36,6 +36,8 @@ Visit my live website at [https://datum.vagweb.com](https://datum.vagweb.com).
 GitHub repository [Tidal Stream 2002 VB6 version](https://github.com/edwinwcw2021/TidalStream2002) Previous project for HKG80 to WGS84 logic.  
 Hydrographic office website for [datum transformation](https://www.hydro.gov.hk/eng/datumnew.php). The calculations run much faster using ASP.NET Core (My live version) than with PHP.  
 Please feel free to leave any questions or feedback on the GitHub repository.  
-    
+
+
+
 Edwin Wong  
-Dec 27, 2023  
+Nov 17, 2025  
