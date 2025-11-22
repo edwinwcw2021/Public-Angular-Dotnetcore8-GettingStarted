@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor() {
+    const root = document.querySelector('app-root');
+    root?.removeAttribute('ng-version');    
+  }    
 }
