@@ -50,8 +50,6 @@
     "typescript": "^5.9.3"
   },
   "overrides": {
-    "glob": "^11.1.0",
-    "autoprefixer": "10.4.5",
-    "webpack": "^5.94.0"
+    "qs": "^6.14.1"
   }
 }
